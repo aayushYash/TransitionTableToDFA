@@ -1,0 +1,20 @@
+<html>
+  <header>
+    <title>Trial</title>
+  </header>
+  <body>
+    <div id="test"></div>
+    <form action="/transitionTable" method="post">
+      <div id="alphabetContainer">
+        <label for="alphabets">Alphabets</label>
+        <input type="text" id="alphabets" name="alphabets" />
+        <button id="alphabetBtn" type="button">Procced</button>
+      </div>
+      <div id="confirmedAlphabet"></div>
+      <div id="statesInput">
+      </div>
+    </form>
+    <img src={{src}} alt="Result" />
+    <script src={{url_for("static", filename="index.js")}}></script>
+  </body>
+</html>
