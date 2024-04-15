@@ -14,6 +14,30 @@
   padding: 10px 20px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5)
 }
+.container1 {
+  flex: 2;
+  margin: 10px auto; /* This centers the div horizontally within its parent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.container1 {
+  flex: 2;
+  margin: 10px auto; /* This centers the div horizontally within its parent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
 
 .diagram-container{
   margin: 10px
