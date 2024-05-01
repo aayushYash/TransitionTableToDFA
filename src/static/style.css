@@ -1,0 +1,69 @@
+body {
+  font-family: sans-serif;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: solid rgba(0,0,0,0.6) 1px;
+  padding: 15px 25px;
+  margin: 10px auto;
+  width: fit-content;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  
+}
+#alphabetcontainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+#alphabets, #alphabetBtn {
+  font-size: 20px;
+}
+table{
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+table tr td{
+  width: 100px;
+  border: 1px solid black;
+  padding: 10px 15px;
+}
+h1 {
+  margin: 2em;
+  text-align: center;
+}
+
+fieldset{
+  width: fit-content;
+  margin: 20px 0;
+  display: flex;
+  column-gap: 20px;
+  /* justify-content: space-between; */
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+  /* background-color: red; */
+}
+
+button{
+  margin-left:10px;
+  background-color: purple;
+  /* border: none; */
+  border: 0.5px solid rgba(0,0,0,0.5);
+  outline: none;
+  border-radius: 10px;
+  padding: 15px 10px;
+  color: #fff;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+input{
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 15px 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
