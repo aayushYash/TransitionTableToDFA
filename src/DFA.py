@@ -160,7 +160,7 @@ def createDFAImg(
     dot = gv.Digraph("DFA", comment="DFA")
     dot.attr("node", shape="circle")
 
-    # Deifne invisible node for starting point
+    # Define invisible node for starting point
     dot.node("", style="invis")
 
     # final nodes
