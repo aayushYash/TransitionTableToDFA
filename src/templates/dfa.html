@@ -1,55 +1,55 @@
 <html>
   <head>
-    <title>
-      DFA
-    </title>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='dfa.css')}}"}}"  >
+    <title>DFA</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static', filename='dfa.css')}}"
+    />
   </head>
-  <body >
+  <body>
     <h2 style="text-align: center">Transition Table to DFA</h2>
     <div class="dfa-body">
-      
-    
-    <div class="container">
-      <h3>Finite Automata</h3>
-      <li>Initial State: {{data.initialState}} </li><br>
-      <li>State: { {{data.states}} }</li><br>
-      <li>Final States: { {{data.finalStates}} }</li><br>
-      <li>Transition Fn: {{data.transitionfn}} </li><br>
-      <li>Alphabets:{ {{data.alphabets}} }</li><br>
-    </div>
-    <div class="container">
-      <h3>Transition Table</h3>
-      <div>{{table|safe}}</div>
-      <div class="diagram-container">
-        <h3>Transition Diagram</h3>
-        <img src={{src}} alt="Result" />
+      <div class="container">
+        <h3>Finite Automata</h3>
+        <li>Initial State: {{ context.initialState }}</li>
+        <br />
+        <li>State: { {{context.states}} }</li>
+        <br />
+        <li>Final States: { {{context.final_states}} }</li>
+        <br />
+        <li>Transition Fn: {{context.transitionfn}}</li>
+        <br />
+        <li>Alphabets:{ {{context.alphabets}} }</li>
+        <br />
+      </div>
+      <div class="container">
+        <h3>Transition Table</h3>
+        <div>{{context.table|safe}}</div>
+        <div class="diagram-container">
+          <h3>Transition Diagram</h3>
+          <img src="{{context.src}}" alt="Result" />
+        </div>
       </div>
     </div>
-    
-    
-      </div>
     <div class="container1">
       <div class="container1-wrapper">
-      <form action="/validateString" method="post">
-        <h3>Enter Input String</h3>
-        <input type="text" name="inputString" placeholder="Enter String" />
-        <button type="submit">Check String</button>
-      </form>
-      {% if error_message %}
-        <p>{{ error_message }}</p>
-      {% endif %}
-      {%
-        if data.inputString != None
-      %}
-      <h4> Entered String: {{data.inputString}}</h4>
-      {% endif %}
-      <!-- <h3>Enter Input String</h3> -->
-      <video width="320" height="320" autoplay>
-        <source src={{video}} type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-        </div>
+        <form action="/validateString" method="post">
+          <h3>Enter Input String</h3>
+          <input type="text" name="input_string" placeholder="Enter String" />
+          <button type="submit">Check String</button>
+        </form>
+        {% if context.input_string != None %}
+        <h4>Entered String: {{context.input_string}}</h4>
+        {% endif %} {% if context.error_message %}
+        <p style="color: red; font-weight: 700">{{ context.error_message }}</p>
+        {% endif %}
+        <!-- <h3>Enter Input String</h3> -->
+        <video width="320" height="320" autoplay>
+          <source src="{{context.video}}" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
   </body>
 </html>
