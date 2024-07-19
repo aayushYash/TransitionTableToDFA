@@ -1,63 +1,9 @@
-import graphviz as gv
-import shutil
 import os
 import random
+import shutil
+
+import graphviz as gv
 import moviepy.video.io.ImageSequenceClip
-
-# def validateInput(startState,finalStates,transitionfn,msg):
-
-#   transition_table = []
-#   for key, val in transitionfn.items():
-#       row = key.split("-")
-#       row.append(val)
-#       transition_table.append(row)
-#       row = []
-
-#   print("transition table", transition_table)
-#   dot = gv.Digraph("DFA", comment="DFA")
-#   dot.attr("node", shape="circle")
-
-#   # Deifne invisible node for starting point
-#   dot.node("", style="invis")
-
-#   # final nodes
-#   for node in finalStates:
-#       dot.node(node, shape="doublecircle")
-
-#   # define edges
-#   # define starting point
-#   dot.edge("", startState)
-
-
-#   traversed = []
-
-
-#   currentState = startState
-#   nextState = startState
-#   for char in msg:
-#     nextState = transitionfn[f'{currentState}-{char}']
-#     if([currentState,char,nextState] not in traversed):
-#       dot.edge(currentState, nextState, char,color="red")
-#       traversed.append([currentState,char,nextState])
-#     # print(currentState, char, nextState)
-
-#     currentState = nextState
-
-#   dot.node(nextState,color="red")
-
-#   for current_node, input_symbol, next_node in transition_table:
-#     if([current_node,input_symbol,next_node] in traversed):
-#       continue
-#     dot.edge(current_node, next_node, input_symbol)
-
-
-#   dot.render(directory='./src/static/img', view=False, format="png", engine="circo")
-
-#   print(nextState,"|||",finalStates)
-#   if(nextState in finalStates):
-#     return f"{msg} String Accepted"
-
-#   return f"{msg} String Rejected"
 
 
 def validateInput(startState, finalStates, transitionfn, msg):
@@ -86,11 +32,11 @@ def validateInput(startState, finalStates, transitionfn, msg):
     dot.edge("", startState)
 
     if os.path.exists("src/static/img"):
-      shutil.rmtree("src/static/img")
+        shutil.rmtree("src/static/img")
 
     if os.path.exists("src/static/video"):
-      for file in os.listdir("src/static/video"):
-        os.remove("src/static/video/" + file)
+        for file in os.listdir("src/static/video"):
+            os.remove("src/static/video/" + file)
 
     currentState = startState
     nextState = startState
@@ -98,9 +44,9 @@ def validateInput(startState, finalStates, transitionfn, msg):
         nextState = transitionfn[f"{currentState}-{char}"]
         currentState = nextState
 
-    color = 'red'
-    if(nextState in finalStates):
-      color = 'green'
+    color = "red"
+    if nextState in finalStates:
+        color = "green"
 
     currentState = startState
     nextState = startState
@@ -108,7 +54,14 @@ def validateInput(startState, finalStates, transitionfn, msg):
         nextState = transitionfn[f"{currentState}-{char}"]
         # if([currentState,char,nextState] not in traversed):
         createDFAImg(
-            transitionfn, startState, finalStates, currentState, nextState, char, index, color
+            transitionfn,
+            startState,
+            finalStates,
+            currentState,
+            nextState,
+            char,
+            index,
+            color,
         )
         # print(currentState, char, nextState)
 
@@ -128,7 +81,11 @@ def validateInput(startState, finalStates, transitionfn, msg):
     )
 
     temp_rn = random.randint(1000000, 9999999)
-    output_video_file_name = f"src/static/video/video-{temp_rn}.mp4"
+    current_file_dir = os.path.dirname(__file__)
+    output_video_folder = "static/video"
+    if not os.path.exists(os.path.join(current_file_dir, output_video_folder)):
+        os.mkdir(os.path.join(current_file_dir, output_video_folder))
+    output_video_file_name = f"video-{temp_rn}.mp4"
     image_folder = "src/static/img"
 
     image_files = [
@@ -140,8 +97,8 @@ def validateInput(startState, finalStates, transitionfn, msg):
     image_files.insert(0, "src/static/DFA.gv.png")
     # print(image_files)
     clip = moviepy.video.io.ImageSequenceClip.ImageSequenceClip(image_files, fps=1)
-    clip.write_videofile(output_video_file_name)
-    return output_video_file_name
+    clip.write_videofile("src/static/video/" + output_video_file_name)
+    return "/static/video/" + output_video_file_name
 
 
 def createDFAImg(
@@ -224,7 +181,6 @@ def createDFA(data, startnode, finalnodes, output_dir):
     for current_state, input_symbol, next_state in transition_table:
         dot.edge(current_state, next_state, input_symbol)
     print(dot.source)
-
 
     dot.render(
         directory=output_dir,
